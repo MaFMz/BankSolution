@@ -88,6 +88,8 @@ void CreateUser()
     Console.WriteLine("Intrese la información del usuario:");
     string email;
     int ID;
+    decimal balance;
+
     do
     {
         start:
@@ -127,9 +129,10 @@ void CreateUser()
     do
     {
         Console.Write("Email:");
-        email = Console.ReadLine();
-        if (Storage.EmailValid(email))
+        string mail = Console.ReadLine();
+        if (Storage.EmailValid(mail))
         {
+            email = mail;
             break;
         }
         else
@@ -138,11 +141,42 @@ void CreateUser()
         }
     } while(true);
 
-    Console.Write("Saldo: ");
-    decimal balance = decimal.Parse(Console.ReadLine());
+    decimal dinero;
+    do
+    {
+        Console.Write("Saldo: ");
+        string saldo = Console.ReadLine();
+        
+        if (decimal.TryParse(saldo, out dinero) && dinero > 0)
+        {
+            balance = decimal.Parse(saldo);
+            break;
+        }
 
-    Console.Write("Escribe 'c' si el usuario es Cliente, 'e' si es Empleado: ");
-    char userType = char.Parse(Console.ReadLine());
+        else
+        {
+            Console.WriteLine("Error: El saldo  a ingresar debe de ser un número decimal positivo.");
+        }
+    } while(true);
+    
+    char userType;
+    do
+    {
+        Console.Write("Escribe 'c' si el usuario es Cliente, 'e' si es Empleado: ");
+        userType = char.Parse(Console.ReadLine());
+
+        if (userType == 'c' || userType == 'e')
+        {
+            break;
+        }
+
+        else
+        {
+            Console.WriteLine("Error: Solo se permiten los caracteres 'c' y 'e' como opciones.");
+        }
+    }while(true);
+    
+    
 
     User newUser;
 
