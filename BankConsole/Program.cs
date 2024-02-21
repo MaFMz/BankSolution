@@ -205,16 +205,47 @@ void CreateUser()
 void DeleteUser()
 {
     Console.Clear();
-
-    Console.Write("Ingresa el ID del usuario a eliminar: ");
-    int ID = int.Parse(Console.ReadLine());
-
-    string result = Storage.DeleteUser(ID);
-
-    if (result.Equals("Success"))
+    int ID;
+    do
     {
-        Console.Write("Usuario eliminado.");
-        Thread.Sleep(2000);
-        ShowMenu();
-    }
+        erase:
+        Console.WriteLine("Ingresa el ID del usuario a eliminar: ");
+        string input = Console.ReadLine();
+
+        if (int.TryParse(input, out ID) && ID > 0)
+        {
+            do
+            {
+                ID = int.Parse(input);
+
+                bool idExists = Storage.CheckUsers(ID);
+
+                if (idExists)
+                {
+                    string result = Storage.DeleteUser(ID);
+
+                    if (result.Equals("Success"))
+                    {
+                        Console.Write("Usuario eliminado.");
+                        break;
+                    }
+                }
+
+                else
+                {
+                    Console.WriteLine("Error: El ID del usuario ingresado no existe.");
+                    goto erase;
+                }
+            } while (true);
+            break;
+        }
+        else
+        {
+            Console.WriteLine("Error: Debe ingresar un número entero positivo.");
+        }
+    } while (true);
+
+    Thread.Sleep(2000);
+    ShowMenu();
+
 }
