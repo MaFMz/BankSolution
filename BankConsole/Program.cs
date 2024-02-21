@@ -81,13 +81,45 @@ void ShowMenu()
     }
 }
 
+
 void CreateUser()
 {
     Console.Clear();
     Console.WriteLine("Intrese la información del usuario:");
+    
+    int ID;
+    do
+    {
+        start:
+        Console.WriteLine("ID: ");
+        string input = Console.ReadLine();
 
-    Console.Write("ID: ");
-    int ID = int.Parse(Console.ReadLine());
+        if (int.TryParse(input, out ID) && ID > 0)
+        {
+            do
+            {
+                ID = int.Parse(input);
+
+                bool idExists = Storage.CheckUsers(ID);
+
+                if (idExists)
+                {
+                    Console.WriteLine("Error: El ID ya existe.");
+                    goto start;
+                }
+                else
+                {
+                    break;
+                }
+            } while (true);
+            break;
+        }
+        else
+        {
+            Console.WriteLine("Error: Debe ingresar un número entero positivo.");
+        }
+    } while (true);
+
 
     Console.Write("Nombre: ");
     string name = Console.ReadLine();

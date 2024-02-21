@@ -94,5 +94,30 @@ public static class Storage
         var newUsersList = listUsers.Where(user => user.GetRegisteredDate().Date.Equals(DateTime.Today)).ToList();
         return newUsersList;
     }
+    public static bool CheckUsers(int ID)
+    {
+        string usersInFile = "";
+        
+        if(File.Exists(filePath))
+            usersInFile = File.ReadAllText(filePath);
+
+        dynamic listObjects = JsonConvert.DeserializeObject(usersInFile);
+
+        string idToFind = ID.ToString();
+
+        bool idExists = false;
+        
+        foreach (var item in listObjects)
+        {
+            if (item.ID == idToFind)
+            {
+                idExists = true;
+                break;
+            }
+        }
+
+        return idExists;
+    }
+
 
 }
