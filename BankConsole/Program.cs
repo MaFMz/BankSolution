@@ -86,7 +86,7 @@ void CreateUser()
 {
     Console.Clear();
     Console.WriteLine("Intrese la información del usuario:");
-    
+    string email;
     int ID;
     do
     {
@@ -124,8 +124,19 @@ void CreateUser()
     Console.Write("Nombre: ");
     string name = Console.ReadLine();
 
-    Console.Write("Email:");
-    string email = Console.ReadLine();
+    do
+    {
+        Console.Write("Email:");
+        email = Console.ReadLine();
+        if (Storage.EmailValid(email))
+        {
+            break;
+        }
+        else
+        {
+            Console.WriteLine("Error: Formato del correo inválido.");
+        }
+    } while(true);
 
     Console.Write("Saldo: ");
     decimal balance = decimal.Parse(Console.ReadLine());

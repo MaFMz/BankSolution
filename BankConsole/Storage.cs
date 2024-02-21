@@ -1,5 +1,6 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Text.RegularExpressions;
 
 namespace BankConsole;
 
@@ -119,5 +120,10 @@ public static class Storage
         return idExists;
     }
 
+    public static bool EmailValid(string email)
+    {
+        string pattern = @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$";
+        return Regex.IsMatch(email, pattern);
+    }
 
 }
