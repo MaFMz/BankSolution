@@ -16,14 +16,14 @@ public static class EmailService
             Text =  GetEmailText()
         };
 
-        /*
+        
         using (var client = new SmtpClient()) {
             client.Connect("smtp.gmail.com", 587, false);
             client.Authenticate("jamesaranda777@gmail.com", "1111111111111111"); //Ocupa clave específica impartida por el correo
             client.Send(message);
             client.Disconnect(true);
         }
-        */
+        
     }
 
     private static string GetEmailText()
