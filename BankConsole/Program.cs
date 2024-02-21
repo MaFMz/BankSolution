@@ -85,7 +85,7 @@ void ShowMenu()
 void CreateUser()
 {
     Console.Clear();
-    Console.WriteLine("Intrese la información del usuario:");
+    Console.WriteLine("Ingrese la información del usuario:");
     string email;
     int ID;
     decimal balance;

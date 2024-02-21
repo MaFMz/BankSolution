@@ -30,5 +30,13 @@
     "Email": "fere@mail.com",
     "Balance": 24037.32,
     "RegisterDate": "2024-02-20T00:50:18.2903905-06:00"
+  },
+  {
+    "TaxRegime": "M",
+    "ID": 6,
+    "Name": "skla",
+    "Email": "skla@email.com",
+    "Balance": 2431.68,
+    "RegisterDate": "2024-02-21T03:10:33.8217464-06:00"
   }
 ]
